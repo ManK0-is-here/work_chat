@@ -1,0 +1,210 @@
+/* static/css/main.css */
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #f0f0f0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Навигация */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    color: #aaa;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+/* Главный контент */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    position: relative;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 50%;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 3rem;
+    max-width: 80%;
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.cta-button:hover {
+    background: #fff;
+    color: #0a0a0a;
+}
+
+/* Фоновые элементы */
+.background-elements {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 50%;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    border: 1px solid #fff;
+}
+
+.circle-large {
+    width: 600px;
+    height: 600px;
+    top: -300px;
+    right: -200px;
+}
+
+.circle-medium {
+    width: 400px;
+    height: 400px;
+    bottom: -200px;
+    right: 100px;
+}
+
+/* Видео-фон */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Анимации */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Медиа запросы */
+@media (max-width: 992px) {
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .hero-subtitle {
+        max-width: 100%;
+    }
+    
+    .background-elements {
+        display: none;
+    }
+    
+    .nav-links {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1.5rem 5%;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-links {
+        display: none; 
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
