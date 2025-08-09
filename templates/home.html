@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     <!-- Навигация -->
     <nav class="navbar">
         <a href="#" class="logo">TP</a>
         <div class="nav-links">
-            <a href="#" class="nav-link">о продукте</a>
+            <a href="#" class="nav-link">Войти</a>
             <a href="#" class="nav-link">О нас</a>
             <a href="#" class="nav-link">Контакты</a>
         </div>
@@ -14,19 +15,47 @@
     <section class="hero">
 
         <div class="hero-content">
+
             <h1 class="hero-title floating">
                 Задания + TeamPulse = <br>Решения
             </h1>
+
             <p class="hero-subtitle">
                 Для максимально точной и продуктивной работы команды
             </p>
-            <a href="#" class="cta-button">Зарегистрироваться</a>
+            <button id="first_but" class="cta-button register-btn">Зарегистрироваться</button>
         </div> 
 
-        <!-- Фоновые элементы -->
-        <div class="background-elements">
-            <div class="circle circle-large"></div>
-            <div class="circle circle-medium"></div>
-        </div>
     </section>
-{% endblock %}
+
+    <!-- Окно регистрации -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Регистрация</h2>
+            <form class="register-form">
+                <div class="form-group">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" id="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Повторите пароль</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Создать аккаунт</button>
+            </form>
+        </div>
+    </div>
+{% endblock content%}
