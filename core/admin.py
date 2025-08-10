@@ -1,3 +1,7 @@
 from django.contrib import admin
+from django.db.models import Count
+from .models import *
 
-# Register your models here.
+
+class ProblemList(admin.SimpleListFilter):
+    title = "Статус задач"
