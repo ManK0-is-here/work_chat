@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %}
 {% load static %}
 {% block content %}
 
@@ -34,4 +34,44 @@
                 <p>&copy; Создано "ManK0 Corporation", {% now "Y" %}</p>
             </div>
     </footer>
-{% endblock content%}
+{% endblock content%} {% endcomment %}
+
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="user-dashboard">
+    <nav class="navbar">
+        <a href="#" class="logo">TP</a>
+        <div class="nav-links">
+            <a href="#" class="nav-link">Чат</a>
+            <a href="#" class="nav-link">Профиль</a>
+            <a href="#" class="nav-link">Очки</a>
+            <a href="#" class="nav-link">Настройки</a>
+        </div>
+    </nav>
+
+    <section>
+        <h1>1</h1>
+    </section>
+
+    <footer class="bg-black text-white py-4 mt-5">
+        <a href="#" class="logo">TP</a>
+
+        <div class="footer_link_1">
+            <h2>Контакты</h2>
+            <a href="#" class="nav-link">Профиль</a>
+            <a href="#" class="nav-link">Очки</a>
+            <a href="#" class="nav-link">Настройки</a>
+        </div>
+        <div class="footer_link_1">
+            <h2>О проекте</h2>
+            <a href="#" class="nav-link">GitHub</a>
+        </div>
+        <div class="container text-center">
+                <p>&copy; Создано "ManK0 Corporation", {% now "Y" %}</p>
+            </div>
+    </footer>
+</section>
+{% endblock %}

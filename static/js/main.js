@@ -1,48 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded and parsed');
     
-    // Элементы модального окна
-    const registerModal = document.getElementById('register-modal');
+    // Элементы модального окна входа
+    const loginModal = document.getElementById('login-modal');
     const closeModal = document.querySelector('.close-modal');
-    const registerBtns = document.querySelectorAll('.register-btn');
-    
-    // Проверка существования элементов
-    if (!registerModal) console.error('Modal element not found!');
-    if (!closeModal) console.error('Close button not found!');
-    if (registerBtns.length === 0) console.warn('Register buttons not found');
+    const loginBtns = document.querySelectorAll('.login-btn');
     
     // Функция открытия/закрытия модального окна
-    function toggleModal(show) {
-        if (!registerModal) return;
-        
+    function toggleLoginModal(show) {
         if (show) {
-            registerModal.style.display = 'flex';
+            loginModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         } else {
-            registerModal.style.display = 'none';
+            loginModal.style.display = 'none';
             document.body.style.overflow = '';
         }
     }
     
-    if (registerBtns.length > 0) {
-        registerBtns.forEach(btn => {
-            btn.addEventListener('click', () => toggleModal(true));
+    // Открытие модалки по клику на "Войти"
+    if (loginBtns.length > 0) {
+        loginBtns.forEach(btn => {
+            btn.addEventListener('click', () => toggleLoginModal(true));
         });
     }
     
+    // Закрытие модалки
     if (closeModal) {
-        closeModal.addEventListener('click', () => toggleModal(false));
+        closeModal.addEventListener('click', () => toggleLoginModal(false));
     }
     
-    if (registerModal) {
-        registerModal.addEventListener('click', (e) => {
-            if (e.target === registerModal) toggleModal(false);
+    // Закрытие по клику вне модалки
+    if (loginModal) {
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) toggleLoginModal(false);
         });
     }
     
+    // Закрытие по ESC
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && registerModal.style.display === 'flex') {
-            toggleModal(false);
+        if (e.key === 'Escape' && loginModal.style.display === 'flex') {
+            toggleLoginModal(false);
         }
     });
-})
+});
