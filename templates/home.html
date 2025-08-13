@@ -5,13 +5,11 @@
     <nav class="navbar">
         <a href="#" class="logo">TP</a>
         <div class="nav-links">
-            <a href="#" class="nav-link-login-bth">Войти</a>
+            <a href="#" class="nav-link">Войти</a>
             <a href="#" class="nav-link">О нас</a>
             <a href="#" class="nav-link">Контакты</a>
         </div>
     </nav>
-
-    <!-- Главная секция -->
     <section class="hero">
 
         <div class="hero-content">
@@ -23,73 +21,45 @@
             <p class="hero-subtitle">
                 Для максимально точной и продуктивной работы команды
             </p>
+
             <button id="first_but" class="cta-button register-btn">Зарегистрироваться</button>
         </div> 
 
     </section>
 
-
-    <!-- Авторизация и Регистрация-->
-    <div id="auth-modal" class="modal">
+    <!-- Окно регистрации -->
+    <div id="register-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-
-            <div class="tabs">
-                <button class="tab active" >Регистрация</button>
-                <button class="tab" data-tab="login">Вход</button>
-            </div>
-        
-            <!-- Форма регистрации -->
-            <div class="tab-content active">
-                <h2>Регистрация</h2>
-
-                <form method="POST" action="{% url 'register' %}" class="auth-form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_username">Имя пользователя</label>
-                        {{ register_form.username }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_email">Email</label>
-                        {{ register_form.email }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_password1">Пароль</label>
-                        {{ register_form.password1 }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_password2">Повторите пароль</label>
-                        {{ register_form.password2 }}
-                    </div>
-
-                    <button type="submit" class="submit-btn">Создать аккаунт</button>
-                </form>
-            </div>
-                
-                <!-- Форма входа -->
-            <div id="login-modal" class="modal">
-                <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    <h2>Вход</h2>
-                    <form method="POST" class="auth-form">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="id_username">Имя пользователя</label>
-                            <input type="text" id="id_username" name="username" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="id_password">Пароль</label>
-                            <input type="password" id="id_password" name="password" required>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">Войти</button>
-                    </form>
+            <h2>Регистрация</h2>
+            <form class="register-form">
+                <div class="form-group">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" id="username" required>
                 </div>
-            </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Повторите пароль</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Создать аккаунт</button>
+            </form>
         </div>
     </div>
+
+
+    <footer  class="footer-bar">
+        <a href="#" class="logo">TP</a>
+    </footer>
 {% endblock content%}
