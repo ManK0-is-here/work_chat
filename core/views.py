@@ -5,3 +5,6 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, "home.html")
+
+def in_dev(r):
+    return render(r, "in_dev.html")
