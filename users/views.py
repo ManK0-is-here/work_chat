@@ -7,7 +7,12 @@ from .forms import UserRegisterForm, CustomAuthForm
 
 
 def user_home(request):
-    return render(request, "user_home.html")
+    
+    if request.user.is_authenticated:
+        return render(request, 'user_home.html')
+    else:
+        return redirect("authentication")
+    
 
 
 def authentication_view(request):
