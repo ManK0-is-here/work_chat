@@ -8,3 +8,6 @@ def home(request):
 
 def in_dev(r):
     return render(r, "in_dev.html")
+
+def register(r):
+    return render(r, "auth.html")

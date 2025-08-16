@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", home, name="home"),
     path("indev", in_dev, name="indev"),
+    path("register/", register, name="register"),
     path('users/', include('users.urls'))
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
