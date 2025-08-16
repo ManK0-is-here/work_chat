@@ -5,9 +5,9 @@
     <nav class="navbar">
         <a href="https://youtu.be/dQw4w9WgXcQ?si=7Jk3XXtue7P64M5p"  target="_blank" class="logo">TP</a>
         <div class="nav-links">
-            <a href="http://127.0.0.1:8000/users/" class="nav-link">Войти</a>
-            <a href="http://127.0.0.1:8000/indev" class="nav-link">О нас</a>
-            <a href="http://127.0.0.1:8000/indev" class="nav-link">Контакты</a>
+            <a href={% url 'user_home' %} class="nav-link">Войти</a>
+            <a href={% url 'indev' %} class="nav-link">О нас</a>
+            <a href={% url 'indev' %} class="nav-link">Контакты</a>
         </div>
     </nav>
     <section class="hero">
@@ -21,14 +21,17 @@
             <p class="hero-subtitle">
                 Для максимально точной и продуктивной работы команды
             </p>
-
-            <button   class="cta-button register-btn">Зарегистрироваться</button>
+            <form action={% url 'authentication' %}>
+                {% csrf_token %}
+                <button   class="link_but">Зарегистрироваться</button>
+            </form>
+            
         </div> 
 
     </section>
 
     <footer  class="footer-bar">
-        <a href="http://127.0.0.1:8000/indev" class="logo">TP</a>
+        <a href={% url 'indev' %} class="logo">TP</a>
     </footer>
 
 {% endblock content%}

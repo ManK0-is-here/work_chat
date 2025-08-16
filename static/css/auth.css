@@ -113,6 +113,7 @@ li {
   padding-left: 37px;
   padding-right: 37px;
   padding-top: 55px;
+
   -webkit-transition: opacity .5s ease, -webkit-transform .5s ease;
   transition: opacity .5s ease, -webkit-transform .5s ease;
   transition: opacity .5s ease, transform .5s ease;
@@ -133,6 +134,7 @@ li {
   padding-left: 37px;
   padding-right: 37px;
   padding-top: 55px;
+
   position: relative;
   top: -375px;
   left: 400px;
@@ -321,6 +323,7 @@ label {
 }
 
 .btn-signup {
+  cursor: pointer;
   float: left;
   font-weight: 700;
   text-transform: uppercase;
@@ -337,6 +340,7 @@ label {
 }
 
 .btn-signin {
+  cursor: pointer;
   float: left;
   padding-top: 8px;
   width: 100%;
@@ -344,6 +348,12 @@ label {
 	border: none;
 	border-radius: 20px;
   margin-top: -8px;
+  background-color: #1059FF;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .btn-animate {
@@ -431,7 +441,7 @@ a.btn-signup:hover, a.btn-signin:hover {
   opacity: 1; 
 }
 
-.cover-photo {
+/* .cover-photo {
   height: 150px;
   position: relative;
   left: 0px;  top: -900px;
@@ -454,9 +464,9 @@ a.btn-signup:hover, a.btn-signin:hover {
 .cover-photo-down {
   top: -575px;
   opacity: 1;
-}
+} */
 
-.profile-photo {
+/* .profile-photo {
   height: 125px;
   width: 125px;
   position: relative;
@@ -470,12 +480,12 @@ a.btn-signup:hover, a.btn-signin:hover {
   -webkit-transition: top 1.5s ease 0.35s, opacity .75s ease .5s;
   transition: top 1.5s ease 0.35s, opacity .75s ease .5s;
   border: solid 3px #ffffff;
-}
+} */
 
-.profile-photo-down {
+/* .profile-photo-down {
   top: -636px;
   opacity: 1;
-}
+} */
 
 h1 {
   color: #ffffff;
@@ -512,41 +522,69 @@ h1 {
   opacity: 1;
 }
 
-a.btn-goback:hover {
-    cursor: pointer; 
-    background-color: #0F4FE6;
-    -webkit-transition: all .5s;
-    transition: all .5s; 
-    color: #ffffff;
-}
-
-/* refresh button styling */
-
-#refresh {
+.back {
+  /* icon_small */
     position: fixed;
     bottom: 20px;
     right: 20px; 
-    background-color: #ffffff;
+    /* background-color: #ea0b0b; */
     width: 50px;
     height: 50px;
-    border-radius: 25px;
-    box-shadow: 0px 2px 7px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    /* box-shadow: 0px 2px 7px rgba(0,0,0,0.1); */
     padding: 13px 0 0 13px;
 }
-
-.refreshicon {
-    fill: #d3d3d3;
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-    -webkit-transition: fill .25s ease, -webkit-transform .25s ease;
-    transition: fill .25s ease, -webkit-transform .25s ease;
-    transition: fill .25s ease, transform .25s ease;
-    transition: fill .25s ease, transform .25s ease, -webkit-transform .25s ease;
+.user-greeting {
+    color: #ffffff;
+    margin-right: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
-.refreshicon:hover {
-  cursor: pointer;
-  fill: #1059FF;
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+.logout-link {
+    color: #1059FF;
+    text-decoration: none;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+.alert {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 80%;
+    max-width: 500px;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.alert-error {
+    background-color: #f44336;
+    color: white;
+}
+
+.alert-info {
+    background-color: #2196F3;
+    color: white;
+}
+
+.back {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
 }

@@ -28,7 +28,7 @@ body::before{
 
 /* Навигация */
 .navbar {
-    background-color: #777777d1;
+    /* background-color: #777777d1; */
     position: fixed;
     top: 0;
     width: 100%;
@@ -97,7 +97,7 @@ body::before{
     line-height: 1.6;
 }
 
-.cta-button {
+.link_but {
     display: inline-block;
     padding: 1rem 2.5rem;
     background: transparent;
@@ -110,7 +110,7 @@ body::before{
     transition: all 0.3s;
 }
 
-.cta-button:hover {
+.link_but:hover {
     background: #ffffff95;
     color: #1a1a1a;
 }
