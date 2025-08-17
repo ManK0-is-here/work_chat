@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", home, name="home"),
     path("indev", in_dev, name="indev"),
-    path("authentication/", authentication_view, name="authentication"),
+    path("authentication/", AuthenticationView.as_view(), name="authentication"),
     path('users/', include('users.urls'))
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \

@@ -56,10 +56,5 @@
             <p class="center_pls">&copy; Создано "ManK0 Inc", {% now "Y" %}</p>
             <p></p>
         </div>
-        {% if user.is_authenticated %}
-        <div class="text-center">
-            <a href="{% url 'logout' %}" class="logout-link">Выйти из системы</a>
-        </div>
-        {% endif %}
     </footer>
 {% endblock content %}
