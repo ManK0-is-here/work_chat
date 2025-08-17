@@ -6,8 +6,7 @@ from django.core.exceptions import ValidationError
 
 class UserRegisterForm(UserCreationForm):
     """
-    Форма регистрации пользователя
-    Наследуется от стандартной UserCreationForm
+    Форма регистрации  пользователя
     """
 
     email = forms.EmailField(
@@ -21,9 +20,13 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+        help_texts = {
+            'username': None,
+            'password1': None,
+            'password2': None,
+        }
 
     def __init__(self, *args, **kwargs):
-        """Настраиваем внешний вид полей"""
         super().__init__(*args, **kwargs)
 
         self.fields['username'].widget.attrs.update({
@@ -36,27 +39,30 @@ class UserRegisterForm(UserCreationForm):
         })
         self.fields['password2'].widget.attrs.update({
             'class': 'form-styling',
-            'placeholder': 'Повторить пароль'
+            'placeholder': 'Повторите пароль'
         })
 
-    def clean(self):
-        """Проверяем совпадение паролей"""
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("password1")
-        password2 = cleaned_data.get("password2")
+    def clean_username(self):
+        """
+        Запрещаем одинаковые username
+        """
+        username = self.cleaned_data.get("username")
+        if User.objects.filter(username=username).exists():
+            raise ValidationError("Имя занято, придумайте другое.")
+        return username
 
-        if password1 and password2 and password1 != password2:
-            raise ValidationError("Пароли не совпадают")
-
-        return cleaned_data
+    def clean_email(self):
+        """
+        Запрещаем одинаковые email
+        """
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Этот email уже используется")
+        return email
 
     def save(self, commit=True):
-        """
-        Переопределяем save(), чтобы сохранялся email
-        Без этого email игнорировался бы
-        """
         user = super().save(commit=False)
-        user.email = self.cleaned_data["email"]  # сохраняем email
+        user.email = self.cleaned_data["email"]
         if commit:
             user.save()
         return user
@@ -64,14 +70,20 @@ class UserRegisterForm(UserCreationForm):
 
 class CustomAuthForm(AuthenticationForm):
     """
-    Кастомная форма логина
-    Просто настраиваем placeholder и css-класс
+    Форма входа
     """
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        help_texts = { 
+            'username': None,
+            'password': None,
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({
             'class': 'form-styling',
-            'placeholder': 'Имя'
+            'placeholder': 'Имя пользователя'
         })
         self.fields['password'].widget.attrs.update({
             'class': 'form-styling',

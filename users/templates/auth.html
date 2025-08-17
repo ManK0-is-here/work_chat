@@ -1,5 +1,3 @@
-{% comment %} Великий похетитель {% endcomment %}
-
 {% load static %}
 <!DOCTYPE html>
 <html >
@@ -8,116 +6,14 @@
   <title>Аутентификация</title>
       <link rel="stylesheet" href="{% static 'css/auth.css' %}">
       <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
-
 </head>
-
 <body>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-
-  {% if messages %}
-    {% for message in messages %}
-      {{ message }}
-    {% endfor %}
-  {% endif %}
-
-<div class="container">
-  <div class="frame">
-    <div class="nav">
-      <ul class"links">
-        <li class="signin-active"><a class="btn">Вход</a></li>
-        <li class="signup-inactive"><a class="btn">Регистрация</a></li>
-      </ul>
-    </div>
-
-  <div>
-      <form class="form-signin" method="post" name="login_form" action="">
-        {% csrf_token %}
-        <input type="hidden" name="login" value="1">
-        
-        <label for="username">Имя</label>
-        {{ login_form.username }}
-        
-        <label for="password">Пароль</label>
-        {{ login_form.password }}
-        
-        <div class="btn-animate">
-          <button type="submit" name="login" class="btn-signin">Войти</button>
-        </div>
-      </form>
-      
-      <form class="form-signup" method="post" name="register_form" action="">
-        {% csrf_token %}
-        <input type="hidden" name="register" value="1">
-        
-        <label for="fullname">Как вас будут звать</label>
-        {{ register_form.username }}
-        
-        <label for="email">Email</label>
-        {{ register_form.email }}
-        
-        <label for="password">Пароль</label>
-        {{ register_form.password1 }}
-        
-        <label for="confirmpassword">Повторить пароль</label>
-        {{ register_form.password2 }}
-        
-        <button type="submit" class="btn-signup" name="register">Зарегистрироваться</button>
-      </form>
-      
-      <div class="success">
-      </div>
-    </div>
-    
-    <div class="forgot">
-      <a href="https://www.alz.org/ru/%D0%B4%D0%B5%D0%BC%D0%B5%D0%BD%D1%86%D0%B8%D1%8F-%D0%B1%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8C_%D0%90%D0%BB%D1%8C%D1%86%D0%B3%D0%B5%D0%B9%D0%BC%D0%B5%D1%80%D0%B0-%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F.asp">Забыли пароль?</a>
-    </div>
-  </div>
-    
+  {% block content %}
+    {% comment %} Тут было красиво {% endcomment %}
+  
+  {% endblock content %}
   <a href={% url "home" %} class="back">
     <img src='/static/image/back.png' width="50" height="50">
   </a>
-</div>
-
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
-<script>
-
-  $(document).ready(function() {
-
-
-	$(".btn").click(function() {
-		$(".form-signin").toggleClass("form-signin-left");
-    $(".form-signup").toggleClass("form-signup-left");
-    $(".frame").toggleClass("frame-long");
-    $(".signup-inactive").toggleClass("signup-active");
-    $(".signin-active").toggleClass("signin-inactive");
-    $(".forgot").toggleClass("forgot-left");   
-    $(this).removeClass("idle").addClass("active");
-	});
-
-  $('.btn-login-switch').click(function(e) {
-    e.preventDefault();
-    $('#register-form').hide();
-    $('#login-form').show();
-    $('.signin-active').addClass('signin-active').removeClass('signin-inactive');
-    $('.signup-inactive').addClass('signup-inactive').removeClass('signup-active');
-  });
-
-  $('.btn-signin').click(function() {
-    $('#login-form').submit();
-  });
-  
-  $('.btn-signup').click(function() {
-    $('#register-form').submit();
-  });
-  
-  {% if register_form_errors %}
-    $('.btn-register-switch').click();
-  {% else %}
-    $('.btn-login-switch').click();
-  {% endif %}
-});
-</script>
-
 </body>
 </html>
