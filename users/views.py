@@ -3,6 +3,13 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.views import View
 from .forms import UserRegisterForm, CustomAuthForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import *
+from django.views.generic import (
+    CreateView,  
+    DetailView, 
+    UpdateView,
+)
 
 
 def user_home(request):
@@ -72,3 +79,13 @@ def logout_view(request):
     logout(request)
     messages.success(request, "Вы вышли из системы")
     return redirect('login')
+
+
+class UserProfileView(LoginRequiredMixin, DetailView):
+
+    model = Profile
+    template_name = 'profile_user.html'
+    context_object_name = 'profile'
+    
+    def get_object(self):
+        return self.request.user.profile

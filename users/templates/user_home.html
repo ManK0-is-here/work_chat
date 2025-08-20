@@ -4,10 +4,11 @@
 {% block content %}
     <!--Навигация-->
     <nav class="navbar">
-        <a href="https://youtu.be/dQw4w9WgXcQ?si=7Jk3XXtue7P64M5p"  target="_blank" class="logo">TP</a>
-        <div class="nav-links">
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=7Jk3XXtue7P64M5p" class="back" >
+                <img src='/static/image/logo.png' width="130" height="130" >
+            </a>
             <a href={% url 'indev' %} class="nav-link">Чат</a>
-            <a href={% url 'indev' %} class="nav-link">Профиль</a>
+            <a href={% url 'profile' %} class="nav-link">Профиль</a>
             <a href={% url 'indev' %} class="nav-link">Очки</a>
             <a href={% url 'indev' %} class="nav-link">Настройки</a>
 

@@ -42,11 +42,12 @@ body::before{
 }
 
 .logo {
-    font-size: 1.8rem;
+    background-image: url('/static/image/logo.png');
+    /* font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-decoration: none;
-    color: #151515;
+    color: #151515; */
 }
 
 .nav-links {
@@ -212,7 +213,6 @@ body::before{
     }
 }
 /* user home page */
-
 .user-body{
     margin-top: 120px;
     height: 100vh;

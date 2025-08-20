@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Team Pulse{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    
+    <div class="base-profile">
+        <div class="profile-information">
+            <div class="left-side">
+                <div class="avatar">
+                    {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" alt="Аватар">
+                    {% else %}
+                        <img src="{% static 'image/default_avatar.webp' %}" alt="Аватар">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="riпht-side">
+                <div class="name-user">
+                    <h5>{{ profile.user.username }}</h5>
+                </div>
+                <div class="date-brith">
+                    <p>{{ profile.birth_date|default:"Не указана" }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="privat-user-settings">
+            <a href="#">Редактировать</a>
+        </div>
+    </div>
+
+
+
+
+    <div class="description-user">   
+        <p class="text-muted mb-0">{{ profile.description|default:"Мне пока нечего расказать о себе" }}</p>
+    </div>
+
+    <div class="my-complite_problems">
+
+    </div>
+
+
+    
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
