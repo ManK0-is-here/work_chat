@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.views import View
-from .forms import UserRegisterForm, CustomAuthForm
+from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import *
 from django.views.generic import (
@@ -10,7 +10,7 @@ from django.views.generic import (
     DetailView, 
     UpdateView,
 )
-
+from django.urls import reverse_lazy
 
 def user_home(request):
     """
@@ -82,10 +82,25 @@ def logout_view(request):
 
 
 class UserProfileView(LoginRequiredMixin, DetailView):
-
+    """
+    Профиль пользователя
+    """
     model = Profile
     template_name = 'profile_user.html'
     context_object_name = 'profile'
     
+    def get_object(self):
+        return self.request.user.profile
+
+
+class UserPrifileRedactView(LoginRequiredMixin, UpdateView):
+    """
+    Редактировать профиль
+    """
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'profile_redact.html'
+    success_url = reverse_lazy('profile')
+
     def get_object(self):
         return self.request.user.profile

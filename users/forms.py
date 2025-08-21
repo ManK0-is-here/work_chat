@@ -1,4 +1,5 @@
 from django import forms
+from .models import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -89,3 +90,9 @@ class CustomAuthForm(AuthenticationForm):
             'class': 'form-styling',
             'placeholder': 'Пароль'
         })
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'name', 'description']
