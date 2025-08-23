@@ -102,5 +102,13 @@ class UserPrifileRedactView(LoginRequiredMixin, UpdateView):
     template_name = 'profile_redact.html'
     success_url = reverse_lazy('profile')
 
+    def post(self, request, *args, **kwargs):
+        profile = self.get_object()
+        if "remove_avatar" in request.POST:
+            profile.remove_avatar()
+            return self.get(request, *args, **kwargs)
+        
+        return super().post(request, *args, **kwargs)
+    
     def get_object(self):
         return self.request.user.profile

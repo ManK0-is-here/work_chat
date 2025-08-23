@@ -7,14 +7,17 @@ from django.dispatch import receiver
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(default="Daun", max_length=30)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
     birth_date = models.DateField(null=True, blank=True)
-    birth_year = models.PositiveIntegerField(null=True, blank=True)
     description = models.TextField(null=True, blank=True, max_length=1000)
 
     def __str__(self):
         return f'Профиль {self.user.username}'
+    
+    def remove_avatar(self):
+        self.avatar.delete(save=False)
+        self.avatar = None
+        self.save()
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

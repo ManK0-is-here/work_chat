@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
@@ -10,7 +11,17 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    
+    <nav class="navbar">
+        <div class="pos-logo">
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=7Jk3XXtue7P64M5p"  target="_blank">
+                <img src="/static/image/logo2.png" alt="" class="logo" align="center">
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href={% url 'user_home' %} class="nav-link">Вернутся</a>
+        </div>
+    </nav>
+
     <div class="base-profile">
         <div class="profile-information">
             <div class="left-side">
@@ -18,7 +29,7 @@
                     {% if profile.avatar %}
                         <img src="{{ profile.avatar.url }}" alt="Аватар">
                     {% else %}
-                        <img src="{% static 'image/default_avatar.webp' %}" alt="Аватар">
+                        <img src="{% static 'image/default.png' %}" alt="Аватар">
                     {% endif %}
                 </div>
             </div>
@@ -31,24 +42,25 @@
                 </div>
             </div>
         </div>
+
         <div class="privat-user-settings">
             <a href={% url 'redact_profile' %}>Редактировать</a>
         </div>
     </div>
 
 
+    <div class="bot-info">
+        <div class="my-chats">
+            <h3>Тут <br> будут <br> чаты</h3>
+        </div>
 
-
-    <div class="description-user">   
-        <p class="text-muted mb-0">{{ profile.description|default:"Мне пока нечего расказать о себе" }}</p>
+        <div class="my-self">
+            <div class="description-user">   
+                <p class="text-muted mb-0">{{ profile.description|default:"Мне пока нечего расказать о себе" }}</p>
+            </div>
+        </div>
     </div>
 
-    <div class="my-complite_problems">
-
-    </div>
-
-
-    
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

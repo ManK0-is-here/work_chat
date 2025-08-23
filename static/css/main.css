@@ -28,7 +28,8 @@ body::before{
 
 /* Навигация */
 .navbar {
-    /* background-color: #777777d1; */
+    background-color: #777777be;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.388);
     position: fixed;
     top: 0;
     width: 100%;
@@ -41,17 +42,13 @@ body::before{
     transition: all 0.3s ease;
 }
 
-.logo {
-    background-image: url('/static/image/logo.png');
-    /* font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-decoration: none;
-    color: #151515; */
+.riht-side-nav{
+    padding: 0%;
 }
 
 .nav-links {
     display: flex;
+    padding-left: 10px;
     gap: 2.5rem;
 }
 
@@ -65,10 +62,9 @@ body::before{
 }
 
 .nav-link:hover {
-    color: #595959;
+    color: #02a3cf;
 }
 
-/* Главный контент */
 .hero {
     height: 100vh;
     display: flex;
@@ -169,7 +165,6 @@ body::before{
     animation: float 6s ease-in-out infinite;
 }
 
-/* Медиа запросы */
 @media (max-width: 992px) {
     .hero-content {
         max-width: 100%;
@@ -243,9 +238,7 @@ footer{
     text-decoration: none;
     color: #151515;
 }
-.logo_footer:hover{
-    color: #0bb235ae;
-}
+
 .mess{
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -256,17 +249,18 @@ footer{
     grid-template-columns: 1fr;
 }
 .text-center{
-    color: rgb(201, 49, 49);
+    color: rgb(239, 45, 45);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 .mess .logo_footer:hover {
-    color: #00d435;
+    color: #30e6fb;
 }
 
 .box {
     background-color: #0c121081;
-    width: 600px;
-    height: 150px;
+    width: 100%;
+    height: 200px;
+    border: 3px solid black
 }

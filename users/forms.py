@@ -95,4 +95,4 @@ class CustomAuthForm(AuthenticationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['avatar', 'name', 'description']
+        fields = ['avatar', 'birth_date', 'description']
