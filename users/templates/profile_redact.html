@@ -9,7 +9,6 @@
     <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
-    <!-- Навигация -->
     <nav class="navbar">
         <div class="pos-logo">
             <a href="{% url 'user_home' %}">
@@ -21,14 +20,11 @@
         </div>
     </nav>
 
-    <!-- ОДНА форма для сохранения и удаления -->
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <!-- Верхний блок профиля -->
         <div class="base-profile">
             <div class="profile-information">
-                <!-- Левая часть: аватар -->
                 <div class="left-side">
                     <div class="avatar">
                         {% if profile.avatar %}
@@ -42,7 +38,6 @@
                     </div>
                 </div>
 
-                <!-- Правая часть: имя и дата рождения -->
                 <div class="riпht-side">
                     <div class="date-brith">
                         <label>Дата рождения</label>
@@ -51,17 +46,23 @@
                 </div>
             </div>
 
-            <!-- Кнопки -->
             <div class="privat-user-settings">
                 <button type="submit" name="remove_avatar" class="delete-btn">Удалить аватар</button>
                 <button type="submit" class="save-btn">Сохранить</button>
             </div>    
         </div>
 
-        <!-- Нижний блок: описание -->
         <div class="bot-info">
             <div class="my-chats">
-                <h3>Тут <br> будут <br> чаты</h3>
+                <div>
+                    <a href="http://127.0.0.1:8000/groups/create/">Create</a>
+                    <form action={% url "create_group" %}>
+                        <button class="create_group">Создать группу</button>
+                    </form>
+                </div>
+                <div>
+                    <h3>Чаты ниже</h3>
+                </div>
             </div>
 
             <div class="my-self">
