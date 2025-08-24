@@ -9,6 +9,7 @@ from django.views.generic import (
     CreateView,  
     DetailView, 
     UpdateView,
+    ListView,
 )
 from django.urls import reverse_lazy
 
@@ -112,3 +113,5 @@ class UserPrifileRedactView(LoginRequiredMixin, UpdateView):
     
     def get_object(self):
         return self.request.user.profile
+
+
