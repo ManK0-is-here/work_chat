@@ -1,14 +1,28 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Team Pulse{% endblock %}</title>
-    {% comment %} <link rel="stylesheet" href="{% static 'css/profile.css' %}"> {% endcomment %}
-    <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
-</head>
-<body>
-    <h1>Create group</h1>
-</body>
-</html>
+{% extends "base_groups.html" %}
+
+{% block content %}
+    <div class="group-create-card">
+        <h2>Создание новой группы</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="id_icon">Иконка группы:</label>
+                <input type="file" name="icon" id="id_icon" accept="image/*">
+            </div>
+            <div class="form-field">
+                <label for="id_name">Название группы:</label>
+                <input type="text" name="name" id="id_name" maxlength="100" required>
+            </div>
+
+            <div class="form-field">
+                <label for="id_description">Описание:</label>
+                <textarea name="description" id="id_description" rows="4"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn-save">Сохранить и создать</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% extends "base_groups.html" %}
+
+{% block title %}{{ group.name }}{% endblock %}
+
+{% block content %}
+    <div class="group-card">
+        <div class="group-header">
+            <div>
+                {% if group.icon %}
+                    <img src="{{ group.icon.url }}" alt="Иконка группы" class="group-icon">
+                {% else %}
+                    <img src="{{ group.icon.url }}" alt="Иконка по умолчанию" class="group-icon">
+                {% endif %}
+            </div>
+            <div>
+                <h2 class="group-title">{{ group.name }}</h2>
+            </div>
+        </div>
+
+        <div class="group-description">
+            <h3>Описание</h3>
+            <p>{{ group.description|default:"Описание отсутствует" }}</p>
+        </div>
+
+        <div class="group-members">
+            <h3>Участники</h3>
+            <ul>
+                {% for member in group.members.all %}
+                    <li>{{ member.username }}</li>
+                {% empty %}
+                    <li>Пока никого нет</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="chat-button">
+            <a href={% url 'indev' %} class="btn-chat">Перейти в чат</a>
+        </div>
+    </div>
+{% endblock %}
+

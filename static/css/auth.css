@@ -11,7 +11,7 @@
 }
 
 body {
-  background-image: url('/static/image/register.jpg');
+  background-color: #4a5065;
   background-size: cover;
   background-position: center;
   color: #2f2f2fb6;
@@ -21,7 +21,7 @@ body {
 
 .reg_form{
   margin: 50px;
-  /* background-image: url('/static/image/register.jpg'); */
+  background-color: #647665;
   justify-self: center;
   justify-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@ body {
 .form-styling{
   justify-self: start;
   color: aliceblue;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgb(53, 72, 129);
 }
 .btn2{
     font-size: 19px;
@@ -72,13 +72,12 @@ button:hover {
 }
 .back {
   /* icon_small */
-    /* position: fixed; */
+    position: fixed;
     bottom: 20px;
     right: 20px; 
     width: 50px;
     height: 50px;
     border-radius: 5px;
-    /* padding: 13px 0 0 13px; */
 }
 .back {
     position: fixed;

@@ -3,5 +3,7 @@ from .views import *
 
 
 urlpatterns = [
-    path("create/", group_create, name="create_group"),
+    path("create/", ChatGroupCreateView.as_view(), name="group_create"),
+    path("<int:pk>/", ChatGroupDetailView.as_view(), name="group_detail"),
+
 ] 

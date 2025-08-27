@@ -178,3 +178,8 @@ body {
 .save-btn:hover {
     background: #0c901bd2;
 }
+
+.active{
+    border-radius: 20;
+    border: 3px solid black;
+}

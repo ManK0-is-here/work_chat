@@ -1,0 +1,223 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #1e1e1e;
+    color: #eee;
+}
+
+.navbar{
+    height: 40px;
+    margin-right: 3%;
+    margin-left: 3%;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+.logo {
+    margin-top: 1%;
+    width: 70px;
+    height: 70px;
+    margin-left: 5%;
+}
+
+.pos-search{
+    align-self: center;
+    justify-self: end;
+}
+.grid-search{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.search-input{
+    align-self: center;
+    height: 25px;
+    width: 120px;
+    background-color: #4ceb9e;
+    color: #2c2c2c;
+    border-radius: 12px;
+    border: 1px solid rgb(60, 59, 59);
+}
+.btn-search{
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-image: url('/static/image/search.png');
+    background-size: cover;
+    background-color: rgba(245, 222, 179, 0);
+}
+.btn-search:hover {
+    opacity: 0.7;
+}
+.btn-search:active {
+    transform: scale(0.95);
+}
+
+.nav-links{
+    align-self: center;
+    justify-self: end;
+    margin-right: 5%;
+}
+.nav-link {
+    color: #29c2ff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #32ca65;
+}
+
+
+
+.container {
+    display: flex;
+    height: 90vh;
+    margin-bottom: 11%;
+    margin-top: 2%;
+}
+
+.sidebar {
+    margin-left: 3%;
+    border-radius: 30px;
+    width: 260px;
+    background: #074170;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h3 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.sidebar li {
+    border: 1px solid black;
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+.sidebar li.active a {
+    background-color: #153862;
+    border: 2px solid black;
+    border-radius: 30px;
+    font-weight: bold;
+    color: rgb(0, 255, 0);
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar .icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+.group-header{
+    display: flex;
+    gap: 10px;
+}
+
+.group-card{
+    height: 500px;
+}
+
+.btn-create {
+    display: block;
+    text-align: center;
+    background: #4CAF50;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    margin-top: 10px;
+    text-decoration: none;
+}
+.btn-create:hover {
+    background: #45a049;
+}
+
+.content {
+    margin-left: 3%;
+    margin-right: 3%;
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    border-radius: 30px;
+    background: #2c2c2c;
+}
+
+
+.group-create-card {
+    max-width: 450px;
+    margin: 20px auto;
+    background: #2c2c2c;
+    padding: 20px;
+    border-radius: 12px;
+    color: #fff;
+}
+
+.group-create-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+}
+
+.group-icon{
+    width: 100px;
+    height: 100px;
+}
+
+.chat-button{
+    border: 2px solid black;
+    background-color: red;
+    height: 20px;
+    width: 150px;
+    border-radius: 30px;
+    padding: 3%;
+    justify-self: center;
+    align-content: center;
+}
+
+.chat-button a{
+    margin-left: 6%;
+    align-items: center;
+    color: #000000;
+    text-decoration: none;
+    text-transform: uppercase;
+}
