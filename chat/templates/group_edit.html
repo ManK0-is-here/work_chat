@@ -1,0 +1,31 @@
+{% extends "base_groups.html" %}
+
+{% block content %}
+<div class="group-create-card">
+    <h2>Редактирование группы</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-field">
+            <label for="id_icon">Иконка группы:</label>
+            <input type="file" name="icon" id="id_icon" accept="image/*">
+        </div>
+
+        <div class="form-field">
+            <label for="id_name">Название группы:</label>
+            <input type="text" name="name" id="id_name" value="{{ group.name }}" maxlength="100" required>
+        </div>
+
+        <div class="form-field">
+            <label for="id_description">Описание:</label>
+            <textarea name="description" id="id_description" rows="4">{{ group.description }}</textarea>
+        </div>
+
+        <div>
+            <button type="submit" class="btn-save">Сохранить изменения</button>
+        </div>
+    </form>
+    <a href={% url "group_list" %}>Отменить</a>
+</div>
+{% endblock %}

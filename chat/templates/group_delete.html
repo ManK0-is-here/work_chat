@@ -1,0 +1,20 @@
+{% extends "base_groups.html" %}
+{% load static %}
+
+{% block content %}
+<div class="delete-card">
+    <h2>Удалить группу</h2>
+    <p>Вы действительно хотите удалить группу <strong>{{ object.name }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <label>
+            Введите название группы для подтверждения:
+            <input type="text" name="confirm_name" required>
+        </label>
+        <br><br>
+        <button type="submit" class="btn-delete">Удалить</button>
+        <a href="{% url 'group_detail' object.pk %}" class="btn-cancel">Отмена</a>
+    </form>
+</div>
+{% endblock %}
