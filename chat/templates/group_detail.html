@@ -52,7 +52,7 @@
 
         <div class="chatbutton">
             {% if user in group.members.all %}
-                <a href={% url 'indev' %} class="btn-chat">Перейти в чат</a>
+                <a href="{% url 'group_chat' group.pk %}" class="btn-chat">Перейти в чат</a>
             {% endif %}   
         </div>     
     </div>

@@ -152,3 +152,16 @@ class GroupChatListView(LoginRequiredMixin, ListView):
         return qs
 
 
+# временная fbv
+@login_required
+def group_chat_view(request, pk):
+    group = get_object_or_404(GroupChat, pk=pk)
+
+    if request.user not in group.members.all():
+        return redirect('group_detail', pk=group.pk)
+
+    context = {
+        'group': group
+    }
+    return render(request, 'group_chat.html', context)
+

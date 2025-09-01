@@ -1,0 +1,99 @@
+{% extends "base_groups.html" %}
+{% load static %}
+
+{% block title %}Чат: {{ group.name }}{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="chat-header">
+        <div class="group-icon-main">
+            {% if group.icon %}
+                <img src="{{ group.icon.url }}" alt="Иконка группы" class="group-icon">
+            {% else %}
+                
+                <img src="{% static 'images/default_group.png' %}" alt="Иконка по умолчанию" class="group-icon">
+            {% endif %}
+        </div>
+        <div class="group-title">
+            <h2>{{ group.name }}</h2>
+        </div>
+        <div class="pos-l">
+            <a href="{% url 'group_detail' group.pk %}" class="btn-action">Назад</a>
+        </div>
+    </div>
+
+    <div id="chat-messages" class="chat-messages">
+        <div class="message">
+            <span class="message-author">Admin:</span>
+            <p class="message-content">Добро пожаловать в чат!</p>
+        </div>
+        <div class="message message-own">
+            <span class="message-author">Вы:</span>
+            <p class="message-content">Привет всем!</p>
+        </div>
+        <div class="message">
+            <span class="message-author">user123:</span>
+            <p class="message-content">Привет!</p>
+        </div>
+
+    </div>
+
+    <div class="chat-input-form">
+        <input type="text" id="chat-message-input" class="chat-input" placeholder="Введите сообщение...">
+        <button id="chat-message-submit" class="btn-send">Отправить</button>
+    </div>
+</div>
+
+<script>
+    const groupId = {{ group.pk }}; 
+    const current_user = "{{ user.username }}"; 
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/chat/'
+        + groupId
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        const messageContainer = document.querySelector('#chat-messages');
+        
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        
+        if (data.username === current_user) {
+            messageElement.classList.add('message-own');
+        }
+
+        messageElement.innerHTML = `<span class="message-author">${data.username}:</span><p class="message-content">${data.message}</p>`;
+        
+        messageContainer.appendChild(messageElement);
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.key === 'Enter') {
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+        if (message.trim() === '') {
+            return; 
+        }
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': current_user
+        }));
+        messageInputDom.value = ''; 
+    };
+</script>
+{% endblock %}
