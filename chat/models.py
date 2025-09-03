@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import uuid
 
 
 class GroupChat(models.Model):
@@ -34,3 +33,16 @@ class GroupChat(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Message(models.Model):
+    group = models.ForeignKey("GroupChat", on_delete=models.CASCADE, related_name="messages")
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["timestamp"]
+
+    def __str__(self):
+        return f"{self.sender.username}: {self.content[:20]}"

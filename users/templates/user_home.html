@@ -11,14 +11,10 @@
         </div>
         <div class="riht-side-nav">
             {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="nav-link"><span class="user-greeting">Привет, {{ user.username }}!</span></a>
+                <a href="{% url 'profile' %}" class="nav-link"><span class="user-greeting">Профиль:{{ user.username }}</span></a>
             {% endif %}
-            <a href={% url 'indev' %} class="nav-link">Поиск</a>
             <a href="http://127.0.0.1:8000/groups/" class="nav-link">Группы</a>
             <a href={% url 'indev' %} class="nav-link">Настройки</a>
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
-            {% endif %}
         </div>
     </nav>
     

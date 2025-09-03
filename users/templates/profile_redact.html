@@ -49,6 +49,9 @@
             <div class="privat-user-settings">
                 <button type="submit" name="remove_avatar" class="delete-btn">Удалить аватар</button>
                 <button type="submit" class="save-btn">Сохранить</button>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+                {% endif %}
             </div>    
         </div>
 
@@ -70,7 +73,6 @@
             </div>
         </div>
     </form>
-
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

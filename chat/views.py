@@ -43,6 +43,11 @@ class ChatGroupDetailView(LoginRequiredMixin, BaseGroupMixin, DetailView):
     def get_queryset(self):
         return GroupChat.objects.filter(members=self.request.user)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        group = self.get_object()
+        context["messages"] = group.messages.select_related("sender").all()[:50]  # последние 50 сообщений
+        return context
 
 class ChatGroupCreateView(LoginRequiredMixin, CreateView):
     model = GroupChat
@@ -135,7 +140,6 @@ class  GroupChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
         messages.success(request, f"Группа «{self.object.name}» успешно удалена!")
         return super().delete(request, *args, **kwargs)
-        
 
 
 class GroupChatListView(LoginRequiredMixin, ListView):
@@ -152,16 +156,17 @@ class GroupChatListView(LoginRequiredMixin, ListView):
         return qs
 
 
-# временная fbv
-@login_required
-def group_chat_view(request, pk):
-    group = get_object_or_404(GroupChat, pk=pk)
+class ChatView(LoginRequiredMixin, BaseGroupMixin, DetailView):
+    model = GroupChat
+    template_name = "group_chat.html"
+    context_object_name = "group"
 
-    if request.user not in group.members.all():
-        return redirect('group_detail', pk=group.pk)
+    def get_queryset(self):
+        return GroupChat.objects.filter(members=self.request.user)
 
-    context = {
-        'group': group
-    }
-    return render(request, 'group_chat.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        group = self.get_object()
+        context["messages"] = group.messages.select_related("sender").all().order_by('timestamp')[:50]
+        return context
 

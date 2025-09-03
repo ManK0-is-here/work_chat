@@ -11,5 +11,5 @@ urlpatterns = [
     path("<int:pk>/add_member/", add_by_username, name="group_add_member"),
     path("", GroupChatListView.as_view(), name="group_list"),
     path("<int:pk>/join/", join_group, name="group_join"),
-    path("<int:pk>/chat/", group_chat_view, name="group_chat"),
+    path("<int:pk>/chat/", ChatView.as_view(), name="group_chat"),
 ] 

@@ -13,6 +13,8 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+    "daphne",
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -22,7 +24,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'users.apps.UsersConfig',
     'core',
-    'channels',
     'chat',
 ]
 
@@ -57,6 +58,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'work_chat.wsgi.application'
 ASGI_APPLICATION = 'work_chat.asgi.application'
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    }
+}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -80,9 +87,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 

@@ -23,77 +23,76 @@
     </div>
 
     <div id="chat-messages" class="chat-messages">
-        <div class="message">
-            <span class="message-author">Admin:</span>
-            <p class="message-content">Добро пожаловать в чат!</p>
-        </div>
-        <div class="message message-own">
-            <span class="message-author">Вы:</span>
-            <p class="message-content">Привет всем!</p>
-        </div>
-        <div class="message">
-            <span class="message-author">user123:</span>
-            <p class="message-content">Привет!</p>
-        </div>
-
+        {% for msg in messages %}
+            <div class="chat-message {% if msg.sender == user %}my-message{% else %}other-message{% endif %}">
+                <span class="sender-name">
+                    {{ msg.sender.username }}
+                </span>
+                <span class="message-content">
+                    {{ msg.content }}
+                </span>
+                <span class="timestamp">
+                    {{ msg.timestamp|date:"H:i" }}
+                </span>
+            </div>
+        {% empty %}
+            <p class="placeholder">Напиши что-нибудь уже</p>
+        {% endfor %}
     </div>
 
-    <div class="chat-input-form">
-        <input type="text" id="chat-message-input" class="chat-input" placeholder="Введите сообщение...">
-        <button id="chat-message-submit" class="btn-send">Отправить</button>
-    </div>
+    <form id="chat-form" class="chat-input-form">
+        {% csrf_token %}
+        <input type="text" id="message-input" class="chat-input" placeholder="Введите сообщение...">
+        <button type="submit" id="chat-message-submit" class="btn-send">Отправить</button>
+    </form>
 </div>
 
 <script>
-    const groupId = {{ group.pk }}; 
-    const current_user = "{{ user.username }}"; 
-
+    const groupId = "{{ group.id }}";
     const chatSocket = new WebSocket(
-        'ws://'
-        + window.location.host
-        + '/ws/chat/'
-        + groupId
-        + '/'
+        'ws://' + window.location.host + '/ws/chat/' + groupId + '/'
     );
+
+    const messagesContainer = document.querySelector('#chat-messages');
+    const chatForm = document.querySelector('#chat-form');
+    const messageInput = document.querySelector('#message-input');
+    const currentUser = "{{ user.username }}";
 
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
-        const messageContainer = document.querySelector('#chat-messages');
-        
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-        
-        if (data.username === current_user) {
-            messageElement.classList.add('message-own');
+        const messageElem = document.createElement('div');
+        messageElem.classList.add('chat-message');
+
+        if (data.username === currentUser) {
+            messageElem.classList.add('my-message');
+        } else {
+            messageElem.classList.add('other-message');
         }
 
-        messageElement.innerHTML = `<span class="message-author">${data.username}:</span><p class="message-content">${data.message}</p>`;
-        
-        messageContainer.appendChild(messageElement);
-        messageContainer.scrollTop = messageContainer.scrollHeight;
+        messageElem.innerHTML = `
+            <span class="sender-name">${data.username}</span>
+            <span>${data.message}</span>
+            <span class="timestamp">${data.timestamp}</span>
+            `;
+        messagesContainer.appendChild(messageElem);
+
+        const placeholder = messagesContainer.querySelector('.placeholder');
+        if (placeholder) placeholder.remove();
+
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
 
-    chatSocket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
+    chatForm.onsubmit = function(e) {
+        e.preventDefault();
+        const message = messageInput.value.trim();
+        if (!message) return;
+
+        chatSocket.send(JSON.stringify({ 'message': message }));
+        messageInput.value = '';
     };
 
-    document.querySelector('#chat-message-input').onkeyup = function(e) {
-        if (e.key === 'Enter') {
-            document.querySelector('#chat-message-submit').click();
-        }
-    };
-
-    document.querySelector('#chat-message-submit').onclick = function(e) {
-        const messageInputDom = document.querySelector('#chat-message-input');
-        const message = messageInputDom.value;
-        if (message.trim() === '') {
-            return; 
-        }
-        chatSocket.send(JSON.stringify({
-            'message': message,
-            'username': current_user
-        }));
-        messageInputDom.value = ''; 
+    window.onload = function() {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
 </script>
 {% endblock %}
