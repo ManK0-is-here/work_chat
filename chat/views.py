@@ -46,7 +46,7 @@ class ChatGroupDetailView(LoginRequiredMixin, BaseGroupMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         group = self.get_object()
-        context["messages"] = group.messages.select_related("sender").all()[:50]  # последние 50 сообщений
+        context["messages"] = group.messages.select_related("sender").all()[:50]
         return context
 
 class ChatGroupCreateView(LoginRequiredMixin, CreateView):
@@ -61,7 +61,7 @@ class ChatGroupCreateView(LoginRequiredMixin, CreateView):
         return responce
     
     def get_success_url(self):
-        return reverse_lazy("group_detail", kwargs={"pk": self.object.pk})
+        return reverse_lazy("groups:group_detail", kwargs={"pk": self.object.pk})
 
 
 class GroupChatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -82,7 +82,7 @@ class GroupChatUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy("group_detail", kwargs={"pk": self.object.pk})
+        return reverse_lazy("groups:group_detail", kwargs={"pk": self.object.pk})
 
 
 def add_by_username(request, pk):
@@ -93,7 +93,7 @@ def add_by_username(request, pk):
 
         if request.user != group.creator:
             messages.error(request, "Только создатель может добавлять участников!")
-            return redirect("group_detail", pk=pk)
+            return redirect("groups:group_detail", pk=pk)
 
         if user_to_add:
             group.members.add(user_to_add)
@@ -101,7 +101,7 @@ def add_by_username(request, pk):
         else:
             messages.error(request, "Пользователь не найден")
 
-    return redirect("group_detail", pk=pk)
+    return redirect("groups:group_detail", pk=pk)
 
 
 def leave_group(request, pk):
@@ -119,7 +119,7 @@ def join_group(request, pk):
         messages.success(request, f"Поздровляю, вы вступили в группу {group.name}.")
     else:
         messages.info(request, "Вы уже состоите в этой группе.")
-    return redirect("group_detail", pk=group.pk)
+    return redirect("groups:group_detail", pk=group.pk)
 
 
 class  GroupChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):

@@ -22,13 +22,13 @@
                 <div id="menu-panel" class="menu-panel">
                     {% if user in group.members.all %}
                         {% if user == group.creator %}
-                            <a href="{% url 'group_edit' group.pk %}" class="btn-action btn-edit">✏️ Редактировать</a>
-                            <a href="{% url 'group_delete' group.pk %}" class="btn-action btn-delete">❌ Удалить</a>
+                            <a href="{% url 'groups:group_edit' group.pk %}" class="btn-action btn-edit">✏️ Редактировать</a>
+                            <a href="{% url 'groups:group_delete' group.pk %}" class="btn-action btn-delete">❌ Удалить</a>
                         {% else %}
-                            <a href="{% url 'group_leave' group.pk %}" class="btn-action btn-leave">🚪 Выйти из группы</a>
+                            <a href="{% url 'groups:group_leave' group.pk %}" class="btn-action btn-leave">🚪 Выйти из группы</a>
                         {% endif %}
                     {% else %}
-                        <a href="{% url 'group_join' group.pk %}" class="btn-action btn-join">Войти в группу</a>
+                        <a href="{% url 'groups:group_join' group.pk %}" class="btn-action btn-join">Войти в группу</a>
                     {% endif %}
                 </div>
             </div>
@@ -52,7 +52,7 @@
 
         <div class="chatbutton">
             {% if user in group.members.all %}
-                <a href="{% url 'group_chat' group.pk %}" class="btn-chat">Перейти в чат</a>
+                <a href="{% url 'groups:group_chat' group.pk %}" class="btn-chat">Перейти в чат</a>
             {% endif %}   
         </div>     
     </div>

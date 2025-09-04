@@ -48,7 +48,7 @@
                         {% endif %}
                         <span>{{ g.name }}</span>
                     </div>
-                    <form method="post" action="{% url 'group_join' g.pk %}">
+                    <form method="post" action="{% url 'groups:group_join' g.pk %}">
                         {% csrf_token %}
                         <button type="submit" class="btn-join">Вступить</button>
                     </form>
@@ -61,7 +61,7 @@
             {% else %}
             {% for g in groups %}
                 <li {% if g.id == current_group_id %}class="active"{% endif %}>
-                <a href="{% url 'group_detail' g.pk %}">
+                <a href="{% url 'groups:group_detail' g.pk %}">
                     {% if g.icon %}
                     <img src="{{ g.icon.url }}" class="icon">
                     {% else %}
