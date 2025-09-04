@@ -51,7 +51,29 @@
 
     <div class="bot-info">
         <div class="my-chats">
-            <h3>Тут <br> будут <br> чаты</h3>
+            <aside class="sidebar">
+    <h3>Мои группы</h3>
+
+    <ul>
+        {% if search_query %}
+            {% else %}
+            {% for g in groups %}
+                <li {% if g.id == current_group_id %}class="active"{% endif %}>
+                <a href="{% url 'groups:group_detail' g.pk %}">
+                    {% if g.icon %}
+                    <img src="{{ g.icon.url }}" class="icon">
+                    {% else %}
+                    <img src="{% static 'images/default_group.png' %}" class="icon">
+                    {% endif %}
+                    {{ g.name }}
+                </a>
+                </li>
+            {% empty %}
+                <li class="muted">Групп нет</li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </aside>
         </div>
 
         <div class="my-self">

@@ -12,6 +12,7 @@ from django.views.generic import (
     ListView,
 )
 from django.urls import reverse_lazy
+from chat.models import GroupChat
 
 def user_home(request):
     """
@@ -93,6 +94,10 @@ class UserProfileView(LoginRequiredMixin, DetailView):
     def get_object(self):
         return self.request.user.profile
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['groups'] = GroupChat.objects.filter(members=self.request.user)
+        return context
 
 class UserPrifileRedactView(LoginRequiredMixin, UpdateView):
     """
@@ -113,5 +118,4 @@ class UserPrifileRedactView(LoginRequiredMixin, UpdateView):
     
     def get_object(self):
         return self.request.user.profile
-
 
