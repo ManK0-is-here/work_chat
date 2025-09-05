@@ -36,7 +36,7 @@
     python manage.py migrate
     ```
 
-5.  **Запустите сервер для разработки:**
+5.  **Запустите сервер для разработки в гит хабе debug=False:**
     ```bash
     python manage.py runserver
     ```
