@@ -1,0 +1,272 @@
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-image: url('/static/image/home2.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #2f2f2f;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index:  -1;
+}
+
+/* Навигация */
+.navbar {
+    background-color: #777777ec;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.388);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top: 5px;
+    height: 65px;
+    padding: 2rem 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.riht-side-nav a{
+    margin-left: 10px;
+}
+.nav-links {
+    display: flex;
+    padding-left: 10px;
+    gap: 2.5rem;
+}
+.logo{
+    margin-top: 7px;
+}
+.left-side-nav{
+    margin-top: 7px;
+}
+
+.nav-link {
+    color: #000000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #02a3cf;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    position: relative;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 50%; 
+} 
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #313131;
+    margin-bottom: 3rem;
+    max-width: 80%;
+    line-height: 1.6;
+}
+
+.link_but {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: #222222;
+    border: 1px solid #000000;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.link_but:hover {
+    background: #ffffff95;
+    color: #1a1a1a;
+}
+
+
+/* Стили формы */
+.register-form {
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffebeb;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgb(255, 242, 242);
+    border: 1px solid #ffeeee;
+    border-radius: 4px;
+    color: #000000;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #cdcdcdc2;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@media (max-width: 992px) {
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .hero-subtitle {
+        max-width: 100%;
+    }
+    
+    .background-elements {
+        display: none;
+    }
+    
+    .nav-links {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1.5rem 5%;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-links {
+        display: none; 
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+/* user home page */
+.user-body{
+    margin-top: 120px;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    padding: 0 10%;
+    position: relative;
+}
+footer{
+    background-color: #484848d1;
+    color: rgb(200, 188, 97);
+    
+    padding-top: 10px;
+    gap: 15px;
+    height: 200px;
+    grid-template-columns: 1fr;
+    border-top: 1px solid;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.logo-div {
+    display: flex;
+}
+.logo_footer{
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #151515;
+}
+
+.mess{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding-bottom: 50px;
+}
+.footer_link_1{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.text-center{
+    color: rgb(239, 45, 45);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.mess .logo_footer:hover {
+    color: #30e6fb;
+}
+
+.box {
+    background-color: #0c121081;
+    width: 100%;
+    height: 200px;
+    border: 3px solid black
+}

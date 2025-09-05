@@ -125,7 +125,7 @@ def join_group(request, pk):
 class  GroupChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = GroupChat
     template_name = "group_delete.html"
-    success_url = reverse_lazy("group_list")
+    success_url = reverse_lazy("groups:group_list")
 
     def test_func(self):
         return self.request.user == self.get_object().creator
@@ -148,12 +148,25 @@ class GroupChatListView(LoginRequiredMixin, ListView):
     context_object_name = "groups"
 
     def get_queryset(self):
-        query = self.request.GET.get("q")
-        qs = GroupChat.objects.filter(members=self.request.user)
+        return GroupChat.objects.filter(members=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = (self.request.GET.get("q") or "").strip()
+
+        context["search_query"] = query
+        context["search_results"] = None
+        context["search_too_short"] = False
 
         if query:
-            qs = qs.filter(name__icontains=query.strip())
-        return qs
+            if len(query) < 3:
+                context["search_too_short"] = True
+            else:
+                context["search_results"] = (
+                    GroupChat.objects.filter(name__icontains=query)
+                )
+
+        return context
 
 
 class ChatView(LoginRequiredMixin, BaseGroupMixin, DetailView):

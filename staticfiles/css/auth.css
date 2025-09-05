@@ -1,0 +1,124 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+} 
+
+.reg-text{
+  color: #000000b5;
+  padding-bottom: 10%;
+}
+
+body {
+  background-color: #4a5065;
+  background-size: cover;
+  background-position: center;
+  color: #2f2f2fb6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.reg_form{
+  margin: 50px;
+  background-color: #647665;
+  justify-self: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  height: 450px;
+  width: 300px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-styling{
+  justify-self: start;
+  color: aliceblue;
+  background-color: rgb(53, 72, 129);
+}
+.btn2{
+    font-size: 19px;
+  margin-left: 120px;
+  cursor: pointer;
+  background-color: #7445e300;
+  border: #000;
+  transition: transform 0.3s ease;
+}
+button{
+  font-size: 19px;
+  margin-left: 60px;
+  cursor: pointer;
+  background-color: #7445e300;
+  border: #000;
+  transition: transform 0.3s ease;
+}
+button:hover {
+  color: aliceblue;
+  transform: scale(1.1); 
+}
+.forgot{
+  margin-top: 50px;
+  justify-self: center;
+  color: #000;
+  
+}
+.forgot a {
+  color: rgb(7, 3, 51);
+}
+.forgot a:hover {
+  color: rgb(255, 255, 255);
+}
+.back {
+  /* icon_small */
+    position: fixed;
+    bottom: 20px;
+    right: 20px; 
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+.back {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 12;
+}
+
+
+.form-styling input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #d91212;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+.errorlist {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+}
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #d19ee7;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: #007204;
+    outline: none;
+}
