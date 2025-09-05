@@ -107,7 +107,7 @@ def add_by_username(request, pk):
 def leave_group(request, pk):
     group = get_object_or_404(GroupChat, pk=pk)
     group.members.remove(request.user)
-    return redirect("group_list")
+    return redirect("groups:group_list")
 
 
 @require_POST
@@ -136,7 +136,7 @@ class  GroupChatDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
         if confirm_name != self.object.name:
             messages.error(request, "Название группы введено неверно!")
-            return redirect("group_delete", pk=self.object.pk)
+            return redirect("groups:group_delete", pk=self.object.pk)
 
         messages.success(request, f"Группа «{self.object.name}» успешно удалена!")
         return super().delete(request, *args, **kwargs)

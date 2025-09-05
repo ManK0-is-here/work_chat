@@ -2,12 +2,18 @@ body {
     font-family: Arial, sans-serif;
     background-color: #262a31;
     margin: 0;
-    padding: 20px;
+    padding: 17px;
     color: #2e2d2d;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+    width: 0; 
+    height: 0;
+}
+
 .navbar{
-    height: 60px;
+    height: 55px;
     border-bottom: 3px solid rgb(255, 255, 255);
     margin-left: 2%;
     margin-right: 2%;
@@ -58,6 +64,7 @@ body {
     max-width: 100%;
     margin-left: 2%;
     margin-right: 2%;
+    border: 3px solid #505050;
 }
 
 .profile-information {
@@ -100,8 +107,6 @@ body {
     margin-right: 1%;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    border-radius: 12px;
-    height: 300%;
     display: flex; 
     gap: 10px;
     margin-top: 15px;
@@ -120,7 +125,7 @@ body {
     width: 95%;
     height: 57vh;
     border: 3px solid #505050;
-    border-radius: 20px;
+    border-radius: 25px;
 }
 
 .my-self{
