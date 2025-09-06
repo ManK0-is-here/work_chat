@@ -32,11 +32,10 @@
 
 4.  **Выполните миграции базы данных:**
     ```bash
-    poetry shell
-    python manage.py migrate
+    poetry run python manage.py migrate
     ```
 
-5.  **Запустите сервер для разработки в гит хабе debug=False:**
+5.  **Запустите сервер для разработки:**
     ```bash
     python manage.py runserver
     ```
